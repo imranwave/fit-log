@@ -53,11 +53,9 @@ const MyPlanPage = () => {
           </div>
         </div>
         {/* tab */}
-        <div>
-          plan:{plan.length} | save:{save.length}
-        </div>
+        
         {/* name of each tab group should be unique */}
-        <div className="tabs tabs-lift">
+        <div className="tabs tabs-lift mt-8">
           <input
             type="radio"
             name="my_tabs_3"

@@ -7,8 +7,9 @@ import { toast } from "react-toastify";
 
 const PlanButton = ({fitbox}:{fitbox:FitType}) => {
     const {plan,setPlan}=useContext(FitContext);
-    console.log('fitPRover=>',setPlan);
     const handlePlaneButton=()=>{
+        const alreadyAdded = plan.some( (singlePlan) => singlePlan.id === fitbox.id );
+        if (alreadyAdded) { toast.warning(`${fitbox.name} is already added!`); return; }
         // console.log("teiggerd",fitbox);
         setPlan([...plan,fitbox])
         toast.success(`your have read ${fitbox.name}`)

@@ -1,9 +1,17 @@
+'use client'
+import { FitContext } from '@/context/FitContext';
 import { FitType } from '@/type/FitType';
-import { Check, Clock3, Flame, Star } from 'lucide-react';
+import { Check, Clock3, Flame, Star, X } from 'lucide-react';
 import Image from 'next/image';
+import { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 
 const PlanCard = ({singlePlan}:{singlePlan:FitType}) => {
+  const {setPlan}=useContext(FitContext)
+  const handleRemove = () => { setPlan((previousPlan) => previousPlan.filter((item) => item.id !== singlePlan.id) ); 
+    toast.success(`Remove From Today's Plan`)
+  };
     return (
          <div className="w-full rounded-[20px] border border-[#292d34] bg-[#191c22] px-5 py-5 my-3">
       <div className="flex items-center justify-between gap-6">
@@ -120,6 +128,7 @@ const PlanCard = ({singlePlan}:{singlePlan:FitType}) => {
 
           {/* Close */}
           <button
+          onClick={handleRemove}
             className="
               ml-2
               flex h-10 w-10
@@ -130,6 +139,7 @@ const PlanCard = ({singlePlan}:{singlePlan:FitType}) => {
               hover:bg-[#292d34]
             "
           >
+            <X />
           </button>
 
         </div>

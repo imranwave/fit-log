@@ -1,16 +1,24 @@
-import { FitType } from '@/type/FitType';
-import { Check, Clock3, Flame, Star } from 'lucide-react';
-import Image from 'next/image';
+'use client'
+import { FitContext } from "@/context/FitContext";
+import { FitType } from "@/type/FitType";
+import { Check, Clock3, Flame, Star, X } from "lucide-react";
+import Image from "next/image";
+import { useContext } from "react";
+import { toast } from "react-toastify";
 
-
-const SaveCard = ({singleSave}:{singleSave:FitType}) => {
-    return (
-        <div className="w-full rounded-[20px] border border-[#292d34] bg-[#191c22] px-5 py-5 my-3">
+const SaveCard = ({ singleSave }: { singleSave: FitType }) => {
+  const { setSave } = useContext(FitContext);
+  const handleRemove = () => {
+    setSave((previousSave) =>
+      previousSave.filter((item) => item.id !== singleSave.id),
+    );
+    toast.success(`Remove From Saved Plan`);
+  };
+  return (
+    <div className="w-full rounded-[20px] border border-[#292d34] bg-[#191c22] px-5 py-5 my-3">
       <div className="flex items-center justify-between gap-6">
-
         {/* ================= LEFT SIDE ================= */}
         <div className="flex min-w-0 items-center gap-5">
-
           {/* Image */}
           <div className="h-[126px] w-[185px] shrink-0 overflow-hidden rounded-[18px]">
             <Image
@@ -24,66 +32,42 @@ const SaveCard = ({singleSave}:{singleSave:FitType}) => {
 
           {/* Workout Info */}
           <div className="min-w-0">
-
             {/* Name */}
             <h2 className="text-[25px] font-semibold uppercase leading-none tracking-[-0.5px] text-white">
               BARBELL BENCH PRESS
             </h2>
 
             {/* Category */}
-            <p className="mt-2 text-[18px] text-[#a8adb7]">
-              Barbell, Bench
-            </p>
+            <p className="mt-2 text-[18px] text-[#a8adb7]">Barbell, Bench</p>
 
             {/* Stats */}
             <div className="mt-4 flex items-center gap-5">
-
               {/* Time */}
               <div className="flex items-center gap-2">
-                <Clock3
-                  size={21}
-                  strokeWidth={2}
-                  className="text-[#baff00]"
-                />
+                <Clock3 size={21} strokeWidth={2} className="text-[#baff00]" />
 
-                <span className="text-[17px] text-white">
-                  25 min
-                </span>
+                <span className="text-[17px] text-white">25 min</span>
               </div>
 
               {/* Calories */}
               <div className="flex items-center gap-2">
-                <Flame
-                  size={21}
-                  strokeWidth={2}
-                  className="text-[#baff00]"
-                />
+                <Flame size={21} strokeWidth={2} className="text-[#baff00]" />
 
-                <span className="text-[17px] text-white">
-                  180 kcal
-                </span>
+                <span className="text-[17px] text-white">180 kcal</span>
               </div>
 
               {/* Rating */}
               <div className="flex items-center gap-2">
-                <Star
-                  size={21}
-                  strokeWidth={2}
-                  className="text-[#baff00]"
-                />
+                <Star size={21} strokeWidth={2} className="text-[#baff00]" />
 
-                <span className="text-[17px] text-white">
-                  4.8
-                </span>
+                <span className="text-[17px] text-white">4.8</span>
               </div>
-
             </div>
           </div>
         </div>
 
         {/* ================= RIGHT SIDE ================= */}
         <div className="flex shrink-0 items-center gap-3">
-
           {/* View Details */}
           <button
             className="
@@ -120,6 +104,7 @@ const SaveCard = ({singleSave}:{singleSave:FitType}) => {
 
           {/* Close */}
           <button
+            onClick={handleRemove}
             className="
               ml-2
               flex h-10 w-10
@@ -130,12 +115,12 @@ const SaveCard = ({singleSave}:{singleSave:FitType}) => {
               hover:bg-[#292d34]
             "
           >
+            <X />
           </button>
-
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default SaveCard;

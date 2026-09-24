@@ -9,6 +9,8 @@ const PlanButton = ({fitbox}:{fitbox:FitType}) => {
     const {save,setSave}=useContext(FitContext);
     console.log('fitPRover=>',save);
     const handleSaveButton=()=>{
+         const alreadyAdded = save.some( (singlePlan) => singlePlan.id === fitbox.id );
+        if (alreadyAdded) { toast.warning(`${fitbox.name} is already added!`); return; }
         // console.log("teiggerd",fitbox);
         setSave([...save,fitbox])
         toast.success(`your have save ${fitbox.name}`)
