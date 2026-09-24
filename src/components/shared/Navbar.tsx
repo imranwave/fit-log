@@ -1,11 +1,13 @@
 import Image from "next/image";
 import logo from "@/assets/logo.png";
+import Link from "next/link";
 
 const Navbar = () => {
-  // const links=<>
-  //         <li> <a>Item 1</a></li>
-  //         <li><a>Item 3</a></li>
-  // </>
+  const links=<>
+          <li> <Link href='/'>Workouts</Link></li>
+          <li> <Link href='/myPlan'>My Plan</Link></li>
+          {/* <li><a>Item 3</a></li> */}
+  </>
   return (
     <div className="bg-base-100 border-b">
       <div className="navbar  container mx-auto">
@@ -33,13 +35,7 @@ const Navbar = () => {
               tabIndex={-1}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                {" "}
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {links}
             </ul>
           </div>
           <div className="flex gap-2 items-center">
@@ -49,12 +45,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+           {links}
           </ul>
         </div>
         <div className="navbar-end flex gap-2">

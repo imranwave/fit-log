@@ -10,21 +10,14 @@
 // }
 
 
-
-import { FitType } from "@/type/FitType";
-import { Clock3, Flame, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { Clock3, Flame, Star } from "lucide-react";
 
-
-
-export interface FitCardProps {
-  fit: FitType;
-}
-
-export default function FitCard({ fit }: FitCardProps) {
+const FitCard = ({ fit }: { fit: FitType }) => {
   return (
-    
-      <div className="overflow-hidden rounded-2xl border border-gray-700 bg-[#191c22] text-white shadow-lg hover:border-lime-400">
+    <Link href={`/fitness/${fit.id}`}>
+      <div className="overflow-hidden rounded-2xl border border-gray-700 bg-[#191c22] text-white shadow-lg transition hover:border-lime-400">
         {/* Image */}
         <div className="h-[190px] w-full overflow-hidden">
           <Image
@@ -36,9 +29,8 @@ export default function FitCard({ fit }: FitCardProps) {
           />
         </div>
 
-      
         <div className="p-4">
-          
+          {/* Muscle Groups */}
           <div className="mb-4 flex flex-wrap gap-2">
             {fit.muscleGroups.map((muscle, index) => (
               <span
@@ -50,29 +42,36 @@ export default function FitCard({ fit }: FitCardProps) {
             ))}
           </div>
 
-         
+          {/* Name */}
           <h2 className="mb-2 text-lg font-extrabold uppercase tracking-wide text-white">
             {fit.name}
           </h2>
 
-       
-          <p className="mb-4 text-sm text-gray-400">{fit.equipment}</p>
+          {/* Equipment */}
+          <p className="mb-4 text-sm text-gray-400">
+            {fit.equipment}
+          </p>
 
-     
-          <div className="flex items-center gap-4 text-sm">
-        
+          {/* Info */}
+          <div className="flex flex-wrap items-center gap-4 text-sm">
             <div className="flex items-center gap-1.5">
-              <Clock3 size={16} strokeWidth={2} className="text-[#c6ff00]" />
+              <Clock3
+                size={16}
+                strokeWidth={2}
+                className="text-[#c6ff00]"
+              />
               <span>{fit.duration} min</span>
             </div>
 
-       
             <div className="flex items-center gap-1.5">
-              <Flame size={16} strokeWidth={2} className="text-[#c6ff00]" />
+              <Flame
+                size={16}
+                strokeWidth={2}
+                className="text-[#c6ff00]"
+              />
               <span>{fit.caloriesBurned} kcal</span>
             </div>
 
-          
             <div className="flex items-center gap-1.5">
               <Star
                 size={16}
@@ -84,6 +83,9 @@ export default function FitCard({ fit }: FitCardProps) {
           </div>
         </div>
       </div>
-   
+    </Link>
   );
-}
+};
+
+export default FitCard;
+
