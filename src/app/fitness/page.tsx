@@ -1,5 +1,6 @@
+import FitCard from "@/components/shared/FitCard";
 import { FitType } from "@/type/FitType";
-import FitCard from "./shared/FitCard";
+
 
 const getFitPromise=async()=>{
     const res=await fetch('https://api.abcz.workers.dev/api/fitlog');

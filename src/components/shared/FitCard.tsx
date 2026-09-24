@@ -13,6 +13,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock3, Flame, Star } from "lucide-react";
+import { FitType } from "@/type/FitType";
 
 const FitCard = ({ fit }: { fit: FitType }) => {
   return (

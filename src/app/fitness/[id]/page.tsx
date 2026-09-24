@@ -8,7 +8,7 @@
 
 // export default fitDetailsPage;
 
-import PlanBUtton from "@/components/fitDetails/PlanBUtton";
+
 import { Bookmark, Plus, SavePlus } from "lucide-react";
 import Image from "next/image";
 
