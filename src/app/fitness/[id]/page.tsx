@@ -1,24 +1,16 @@
-// const fitDetailsPage = async({}) => {
-//     return (
-//         <div>
-//             <h1>Fit Details Page</h1>
-//         </div>
-//     );
-// };
 
-// export default fitDetailsPage;
-
-
-import { Bookmark, Plus, SavePlus } from "lucide-react";
 import Image from "next/image";
+import { FitType } from "@/type/FitType";
+import PlanButton from "@/components/fitDetails/PlanButton";
+import SaveButton from "@/components/fitDetails/SaveButton";
 
 interface IfitProps {
-  params: {
+ params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-const getFitLibrary = async (id: string) => {
+const getFitLibrary = async (id: string):Promise<FitType> => {
   const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
 
   const data = await res.json();
@@ -28,13 +20,7 @@ const getFitLibrary = async (id: string) => {
 
 const FitDetails = async ({ params }: IfitProps) => {
   const { id } = await params;
-
-  //   const fitness = await getFitLibrary();
-
-  //   const fitbox = fitness.find(
-  //     (fit: WorkerType) => fit.id === Number(id)
-  //   );
-  const fitbox = await getFitLibrary(id);
+ const fitbox: FitType = await getFitLibrary(id);
   return (
     <div className="min-h-screen bg-[#0d0f12] px-4 py-8 text-white container mx-auto">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-[320px_1fr]">
@@ -158,20 +144,15 @@ const FitDetails = async ({ params }: IfitProps) => {
           {/* ================= BUTTONS ================= */}
 
           <div className="mt-5 flex gap-2">
-            {/* Add Button */}
+            
+          {/* <PlanButton fitbox={fitbox}></PlanButton> */}
 
-            {/* <PlanBUtton></PlanBUtton> */}
-
-            <button className="flex items-center gap-1 rounded-full border  px-5 py-3 text-xs font-medium text-black bg-[#C2F800]">
-              <SavePlus size={13} />
-              Add to Today Plan
-            </button>
+           <PlanButton fitbox={fitbox}></PlanButton>
+            <SaveButton fitbox={fitbox}></SaveButton>
             {/* Save Button */}
 
-            <button className="flex items-center gap-1 rounded-full border border-gray-500 px-8 py-3 text-xs font-medium text-white transition hover:bg-gray-800">
-              <Bookmark size={13} />
-              Save for later
-            </button>
+            
+
           </div>
         </div>
       </div>

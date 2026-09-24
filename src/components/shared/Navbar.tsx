@@ -38,10 +38,12 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className="flex gap-2 items-center">
+         
+          <div className="flex gap-2 items-center cursor-pointer">
             <Image src={logo} alt="nav-logo"></Image>
             <span className="text-xl font-bold">Fit-log</span>
           </div>
+        
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
