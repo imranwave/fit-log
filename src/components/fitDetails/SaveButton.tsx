@@ -2,6 +2,7 @@
 
 import { FitContext } from "@/context/FitContext";
 import { FitType } from "@/type/FitType";
+import { Bookmark } from "lucide-react";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
@@ -15,7 +16,7 @@ const PlanButton = ({fitbox}:{fitbox:FitType}) => {
         setSave([...save,fitbox])
         toast.success(`your have save ${fitbox.name}`)
     }
-    return  <button className="flex items-center gap-1 rounded-full border  px-5 py-3 text-xs font-medium text-black bg-[#C2F800]" onClick={()=>handleSaveButton()}>Save</button>
+    return  <button className="flex items-center gap-1 rounded-full border  px-5 py-3 text-xs font-medium cursor-pointer" onClick={()=>handleSaveButton()}><Bookmark />Save For Latter</button>
 };
 
 export default PlanButton;

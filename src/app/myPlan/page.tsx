@@ -4,11 +4,45 @@ import SaveCard from "@/components/card/SaveCard";
 import FitCard from "@/components/shared/FitCard";
 import { FitContext } from "@/context/FitContext";
 import { FitType } from "@/type/FitType";
+import Link from "next/link";
 import React, { useContext } from "react";
 
 const MyPlanPage = () => {
   const { plan, save } = useContext(FitContext);
-  console.log(plan, "Plan boo", save, "Savbe boo");
+
+  // const totalExercises = plan.length;
+
+  // const totalMinutes = plan.reduce(
+  //   (total, workout) => total + workout.duration,
+  //   0
+  // );
+
+  // const totalCalories = plan.reduce(
+  //   (total, workout) => total + workout.caloriesBurned,
+  //   0
+  // );
+
+  // plan
+  const totalPlanExercises = plan.length;
+  const totalPlanMinutes = plan.reduce(
+    (total, workout) => total + workout.duration,
+    0,
+  );
+  const totalPlanCalories = plan.reduce(
+    (total, workout) => total + workout.caloriesBurned,
+    0,
+  );
+  // save
+  const totalSaveExercises = save.length;
+  const totalSaveMinutes = save.reduce(
+    (total, workout) => total + workout.duration,
+    0,
+  );
+  const totalSaveCalories = save.reduce(
+    (total, workout) => total + workout.caloriesBurned,
+    0,
+  );
+
   return (
     <div className="container mx-auto">
       <section className="min-h-screen  px-6 py-7 text-white">
@@ -29,7 +63,7 @@ const MyPlanPage = () => {
               <p className="mb-2 text-[16px] text-[#9da2ad]">Exercises</p>
 
               <h2 className="text-[42px] font-bold leading-none text-[#b6ff00]">
-                0
+                {totalPlanExercises}
               </h2>
             </div>
 
@@ -38,7 +72,7 @@ const MyPlanPage = () => {
               <p className="mb-2 text-[16px] text-[#9da2ad]">Minutes</p>
 
               <h2 className="text-[42px] font-bold leading-none text-white">
-                0
+                {totalPlanMinutes}
               </h2>
             </div>
 
@@ -47,13 +81,13 @@ const MyPlanPage = () => {
               <p className="mb-2 text-[16px] text-[#9da2ad]">Calories</p>
 
               <h2 className="text-[42px] font-bold leading-none text-white">
-                0
+                {totalPlanCalories}
               </h2>
             </div>
           </div>
         </div>
         {/* tab */}
-        
+
         {/* name of each tab group should be unique */}
         <div className="tabs tabs-lift mt-8">
           <input
@@ -61,6 +95,7 @@ const MyPlanPage = () => {
             name="my_tabs_3"
             className="tab"
             aria-label="Today's Plan"
+            defaultChecked
           />
           <div className="tab-content bg-base-100 border-base-300 p-6">
             {plan.length > 0 ? (
@@ -80,9 +115,7 @@ const MyPlanPage = () => {
                 </p>
 
                 {/* Button */}
-                <button
-                  className=" mt-8 rounded-full bg-[#baff00] px-[23px] py-[14px] text-[17px] font-semibold text-black transition hover:[#a9e600]"
-                >
+                <button className=" mt-8 rounded-full bg-[#baff00] px-[23px] py-[14px] text-[17px] font-semibold text-black transition hover:[#a9e600]">
                   Go to workouts
                 </button>
               </div>
@@ -94,10 +127,10 @@ const MyPlanPage = () => {
             name="my_tabs_3"
             className="tab"
             aria-label="Saved"
-            defaultChecked
           />
           {/* 2 */}
           <div className="tab-content bg-base-100 border-base-300 p-6">
+            
             {save.length > 0 ? (
               save.map((singleSave: FitType) => {
                 return <SaveCard key={singleSave.id} singleSave={singleSave} />;
@@ -115,11 +148,10 @@ const MyPlanPage = () => {
                 </p>
 
                 {/* Button */}
-                <button
-                  className=" mt-8 rounded-full bg-[#baff00] px-[23px] py-[14px] text-[17px] font-semibold text-black transition hover:[#a9e600]"
-                >
+                <button className=" mt-8 rounded-full bg-[#baff00] px-[23px] py-[14px] text-[17px] font-semibold text-black transition hover:[#a9e600]">
                   Go to workouts
                 </button>
+                
               </div>
             )}
           </div>

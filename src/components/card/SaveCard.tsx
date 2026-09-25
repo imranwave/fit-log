@@ -46,14 +46,14 @@ const SaveCard = ({ singleSave }: { singleSave: FitType }) => {
               <div className="flex items-center gap-2">
                 <Clock3 size={21} strokeWidth={2} className="text-[#baff00]" />
 
-                <span className="text-[17px] text-white">25 min</span>
+                <span className="text-[17px] text-white">{singleSave.duration} min</span>
               </div>
 
               {/* Calories */}
               <div className="flex items-center gap-2">
                 <Flame size={21} strokeWidth={2} className="text-[#baff00]" />
 
-                <span className="text-[17px] text-white">180 kcal</span>
+                <span className="text-[17px] text-white">{singleSave.caloriesBurned} kcal</span>
               </div>
 
               {/* Rating */}

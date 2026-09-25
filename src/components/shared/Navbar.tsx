@@ -1,15 +1,19 @@
+'use client'
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
+import { useContext } from "react";
+import { FitContext } from "@/context/FitContext";
 
 const Navbar = () => {
+  const {plan,save}=useContext(FitContext)
   const links=<>
-          <li> <Link href='/'>Workouts</Link></li>
-          <li> <Link href='/myPlan'>My Plan</Link></li>
+          <li> <Link href='/' className="font-bold text-[#CCFF00]">Workouts</Link></li>
+          <li> <Link href='/myPlan' className="font-bold">My Plan</Link></li>
           {/* <li><a>Item 3</a></li> */}
   </>
   return (
-    <div className="bg-base-100 border-b">
+    <div className="bg-base-100  border-b sticky top-0">
       <div className="navbar  container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -51,8 +55,8 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end flex gap-2">
-          <button className="btn text-md font-bold">Plan <span className="bg-[#C2F800] px-4 rounded-3xl">0</span></button>
-          <button className="btn text-md font-bold">Saved <span className="border-white border px-4 rounded-3xl">0</span></button>
+          <button className="btn text-md font-bold">Plan <span className="bg-[#C2F800] px-4 rounded-3xl">{plan.length}</span></button>
+          <button className="btn text-md font-bold">Saved <span className="border-white border px-4 rounded-3xl">{save.length}</span></button>
         </div>
       </div>
     </div>

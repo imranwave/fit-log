@@ -2,6 +2,7 @@
 
 import { FitContext } from "@/context/FitContext";
 import { FitType } from "@/type/FitType";
+import { SavePlus } from "lucide-react";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
@@ -14,7 +15,7 @@ const PlanButton = ({fitbox}:{fitbox:FitType}) => {
         setPlan([...plan,fitbox])
         toast.success(`your have read ${fitbox.name}`)
     }
-    return  <button className="flex items-center gap-1 rounded-full border  px-5 py-3 text-xs font-medium text-black bg-[#C2F800]" onClick={()=>handlePlaneButton()}>Add to Today Plan</button>
+    return  <button className="flex items-center gap-1 rounded-full border  px-5 py-3 text-xs font-medium text-black bg-[#C2F800] cursor-pointer" onClick={()=>handlePlaneButton()}><SavePlus />Add to Today Plan</button>
 };
 
 export default PlanButton;
